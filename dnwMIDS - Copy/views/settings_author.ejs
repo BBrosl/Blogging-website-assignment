@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="/assets/bootstrap.min.css" rel="stylesheet">
+  <title><%= 'Author Settings | ' + global.settings.title %></title>
+</head>
+
+<body class ="bg-warning text-secondary  text-center">
+
+  <h1 class="display-5 fw-bold">
+    <a href="/" class="text-dark text-decoration-none">
+      <%= global.settings.title %>
+    </a>
+    <% if (locals.goto) { %>
+      <a href="/<%= goto %>" class="text-white">Go to <%= goto %> home</a>
+    <% } %>
+  </h1>
+    <div class="container my-2">
+  
+      <div class="row mb-4 text-center">
+        <h1 class="border-bottom">
+          Author settings
+        </h1>
+        <span class="sub">
+          This page is used to change the default settings.
+        </span><br>
+      </div>
+  
+      <div class="row">
+        <!--form for author to update settings-->
+        <form method="post" action="/author/settings">
+          <div class="mainField text-center"> 
+            <label for="title" class="form-label">Blog title</label>
+            <input type="text" class="form-control" id="title" name="title" value="<%= title %>" required>
+          </div>
+          <div class="mainField text-center mt-3">
+            <label for="subtitle" class="form-label">Subtitle</label>
+            <input type="text" class="form-control" id="subtitle" name="subtitle" value="<%= subtitle %>" required>
+          </div>
+          <div class="mainField text-center my-3">
+            <label for="author" class="form-label">Name of Author:</label>
+            <input type="text" class="form-control" id="author" name="author" value="<%= author %>" required>
+          </div>
+          <div class = "mx-auto">
+          <button type="submit" class="my-2 mx-2 btn btn-success">Update Settings</button>
+          <a class="btn btn-danger" href="/author" role="button">Previous page</a>
+          </div>
+        </form>
+      </div>
+  
+    </div>
+
+  </body>
+  
+  </html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="/assets/bootstrap.min.css" rel="stylesheet">
+  <title><%= 'Edit Article  | ' + global.settings.title %></title>
+</head>
+
+<body class = "bg-warning text-secondary text-center">
+    <div class="header">
+    <h1 class="display-5 fw-bold">
+        <h1 class="display-5 fw-bold text">
+            <a href="/" class="title text-decoration-none text-dark">
+              <%= global.settings.title %>
+            </a>
+          </h1>
+          <div class="sub-header">
+            <p class="fs-4 mb-0">
+              <%= global.settings.subtitle %>
+            </p>
+            <p class="fw-light mx-auto">
+              <%= global.settings.author %>
+            </p>
+          </div>
+          <% if (locals.goto) { %>
+            <a href="/<%= goto %>" class="text-white">Go to <%= goto %> home</a>
+          <% } %>
+      </h1>
+    </div>
+<main>
+<div class = "container my-2">
+    <div class = " border-bottom">
+        <h1>
+        <%= locals.id ? 'Edit existing' : 'Make new ' %> article
+        </h1>
+      <p class="mb-2">
+        <% if (locals.time_made) { %>
+            <span class="fw-bold">[Created on <%= new Date(time_made).toLocaleString() %>]</span>
+          <% } %>
+          <% if (locals.time_edited) { %>
+            <span class="fw-bold">[Last edited <%= new Date(time_edited).toLocaleString() %>]</span>
+          <% } %>
+      </p>
+    </div>
+
+    <div class="row mt-4">
+        <form method="post" action="/author/<%= locals.id ? 'edit/' + id : 'new' %>">
+
+        <div class="mb-3">
+        <label for="title" class="form-label fw-bold text-black fs-4">Title</label>
+        <input type="text" class="form-control" id="title" name="title" value="<%= locals.title %>" required>
+        </div>
+
+        <div class="mb-3">
+        <label for="subtitle" class="form-label fw-bold text-black fs-4">Sub-Title</label>
+        <input type="text" class="form-control" id="sub-title" name="subtitle" value="<%= locals.subtitle %>" required>
+        </div>
+
+        <div class="mb-3">
+        <label for="body" class="form-label fw-bold text-black fs-4">Body</label>
+        <textarea rows="5" class="form-control" id="body" name="body" required><%= locals.body %></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-success">Submit</button>
+        <a href="/author" role="button" class="btn btn-danger ">Previous</a>
+
+        </form>
+    </div>
+</div>
+</main>
+</body>
+</html>
